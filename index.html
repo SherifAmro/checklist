@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="Plan to start earning from AI automation beside university, October 2026 to June 2027.">
+<title>Earning by June</title>
+<link id="fonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Schibsted+Grotesk:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}</style>
+<style id="s">
+/* Layout: one narrow column; a progress header, then five dated phases as a timeline, current phase highlighted */
+:root{
+  --bg:#f3f5f1; --surface:#ffffff; --fg:#17211d; --muted:#5d6b64; --line:#dde3dd;
+  --accent:#1d6b54; --accent-soft:#dcefe6; --warn:#a4481f; --warn-soft:#f8e4d9;
+  --display:"Bricolage Grotesque",ui-sans-serif,system-ui,sans-serif;
+  --body:"Schibsted Grotesk",ui-sans-serif,system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#101614; --surface:#18201d; --fg:#e6ece8; --muted:#94a39b; --line:#2a3531;
+  --accent:#5cc79f; --accent-soft:#1c3a2f; --warn:#f08d5d; --warn-soft:#3d2419; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101614; --surface:#18201d; --fg:#e6ece8; --muted:#94a39b; --line:#2a3531;
+  --accent:#5cc79f; --accent-soft:#1c3a2f; --warn:#f08d5d; --warn-soft:#3d2419; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5}
+.wrap{max-width:680px;margin:0 auto;padding-inline:16px;padding-block:28px 56px;display:flex;flex-direction:column;gap:28px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,8vw,44px);line-height:1.02;margin:0;letter-spacing:-.02em;text-wrap:balance}
+.sub{color:var(--muted);margin:8px 0 0;max-width:60ch}
+.prog{display:flex;flex-direction:column;gap:8px}
+.prog-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-variant-numeric:tabular-nums}
+.prog-num{font-family:var(--display);font-weight:600;font-size:22px}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .3s}
+.rhythm{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-size:13px;padding:5px 10px;border-radius:99px;background:var(--surface);border:1px solid var(--line);color:var(--muted)}
+.chip b{color:var(--fg);font-weight:600}
+.phases{display:flex;flex-direction:column;gap:12px}
+.phase{border-radius:14px;padding:18px 16px;display:flex;flex-direction:column;gap:12px;border:1px solid transparent}
+.phase.now{background:var(--surface);border-color:var(--line)}
+.ph-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.ph-title{font-family:var(--display);font-weight:600;font-size:20px;margin:0}
+.ph-when{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.02em}
+.now-tag{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.08em;background:var(--accent-soft);color:var(--accent);padding:2px 8px;border-radius:99px;margin-left:6px}
+.ph-note{margin:0;color:var(--muted);font-size:14px}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+li{border-top:1px solid var(--line)}
+li:first-child{border-top:0}
+label{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:start;padding:10px 0;cursor:pointer}
+label>span{min-width:0}
+input[type=checkbox]{appearance:none;width:20px;height:20px;margin:1px 0 0;border:2px solid var(--muted);border-radius:6px;display:grid;place-items:center;cursor:pointer;background:transparent}
+input[type=checkbox]:checked{background:var(--accent);border-color:var(--accent)}
+input[type=checkbox]:checked::after{content:"";width:5px;height:10px;border:solid var(--bg);border-width:0 2px 2px 0;transform:rotate(45deg) translate(-1px,-1px)}
+input[type=checkbox]:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.done .txt{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line)}
+.due{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;padding-top:2px;font-variant-numeric:tabular-nums}
+.late .due{color:var(--warn);background:var(--warn-soft);padding:1px 6px;border-radius:6px}
+.status{font-size:13px;color:var(--muted);min-height:1.2em;margin:0}
+@media (prefers-reduced-motion: reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Earning by June</h1>
+    <p class="sub">AI automation and apps for local businesses, built beside university. Tick tasks off as you go. Progress is saved in this browser.</p>
+  </header>
+  <section class="prog" aria-label="Progress">
+    <div class="prog-top"><span class="prog-num" id="count">0 / 0</span><span class="ph-when" id="pct">0%</span></div>
+    <div class="bar"><i id="fill" style="width:0"></i></div>
+    <div class="rhythm" aria-label="Weekly rhythm">
+      <span class="chip"><b>6–7 h</b> building / client work</span>
+      <span class="chip"><b>2–3 h</b> outreach</span>
+      <span class="chip">Exam weeks: <b>maintenance only</b></span>
+    </div>
+    <p class="status" id="status" role="status"></p>
+  </section>
+  <main class="phases" id="app"></main>
+</div>
+<script>
+(function(){
+var PHASES=[
+ {t:"Build the offer",from:"2026-10-01",to:"2026-11-30",note:"One niche, two demos, one clear offer.",tasks:[
+  ["p1a","Pick one niche (clinics, gyms or cash-on-delivery stores) and list 20 real businesses in it","2026-10-05"],
+  ["p1b","Set up n8n and a WhatsApp Business API test number","2026-10-12"],
+  ["p1c","Demo 1: WhatsApp bot that answers FAQs and books appointments","2026-10-26"],
+  ["p1d","Demo 2: n8n flow that confirms COD orders on WhatsApp","2026-11-09"],
+  ["p1e","Record a 60–90 second video of each demo","2026-11-16"],
+  ["p1f","One-page portfolio: both demos, Velora, weather-cli","2026-11-23"],
+  ["p1g","Write your offer: what you build, for whom, starting price","2026-11-30"]]},
+ {t:"Land the first client",from:"2026-12-01",to:"2027-01-31",note:"Cheap or free is fine. A testimonial is the goal. Ease off around finals.",tasks:[
+  ["p2a","Check whether the social media platform brief is still open","2026-12-03"],
+  ["p2b","Send 20 outreach messages with a demo video (5 a week)","2026-12-28"],
+  ["p2c","Book 3 discovery calls","2026-12-31"],
+  ["p2d","Sign first client (discounted in exchange for a testimonial)","2027-01-15"],
+  ["p2e","Deliver it and get a written testimonial","2027-01-31"]]},
+ {t:"First paid work",from:"2027-02-01",to:"2027-03-31",note:"Real prices, reusable templates.",tasks:[
+  ["p3a","Set real prices: setup fee plus monthly maintenance","2027-02-07"],
+  ["p3b","Turn the first project into a reusable template","2027-02-14"],
+  ["p3c","Freelance profile with the first case study","2027-02-21"],
+  ["p3d","Send 20 more outreach messages","2027-03-07"],
+  ["p3e","Sign first paying client","2027-03-15"],
+  ["p3f","Deliver and offer a monthly maintenance plan","2027-03-31"]]},
+ {t:"Build a pipeline",from:"2027-04-01",to:"2027-05-31",note:"Two to three paying clients or retainers.",tasks:[
+  ["p4a","Sign second paying client","2027-04-15"],
+  ["p4b","First monthly retainer active","2027-05-01"],
+  ["p4c","Sign third paying client","2027-05-15"],
+  ["p4d","List the problems that keep repeating across clients","2027-05-31"]]},
+ {t:"Ready for summer",from:"2027-06-01",to:"2027-06-30",note:"Earning, with a proven offer to go full-time on.",tasks:[
+  ["p5a","Review income per client and raise prices","2027-06-15"],
+  ["p5b","Pick one repeated problem to build as a SaaS over summer","2027-06-30"]]}
+];
+var S={done:{}};
+try{var l=JSON.parse(localStorage.getItem("ebj")||"null");if(l&&l.done)S=l}catch(e){}
+var status=document.getElementById("status");
+var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+function fmt(d){var p=d.split("-");return MON[+p[1]-1]+" "+(+p[2])}
+function today(){var n=new Date();return n.getFullYear()+"-"+String(n.getMonth()+1).padStart(2,"0")+"-"+String(n.getDate()).padStart(2,"0")}
+function render(){
+  var t=today(),total=0,done=0,app=document.getElementById("app");app.textContent="";
+  var nowIdx=PHASES.findIndex(function(p){return t<=p.to});
+  PHASES.forEach(function(p,i){
+    var sec=document.createElement("section");sec.className="phase"+(i===nowIdx?" now":"");
+    var h=document.createElement("div");h.className="ph-head";
+    var ti=document.createElement("h2");ti.className="ph-title";ti.textContent=p.t;
+    if(i===nowIdx){var tag=document.createElement("span");tag.className="now-tag";tag.textContent="Now";ti.appendChild(tag)}
+    var w=document.createElement("span");w.className="ph-when";w.textContent=fmt(p.from)+" – "+fmt(p.to)+(p.to.slice(0,4)!==p.from.slice(0,4)||i===0?" "+p.to.slice(0,4):"");
+    h.append(ti,w);
+    var n=document.createElement("p");n.className="ph-note";n.textContent=p.note;
+    var ul=document.createElement("ul");
+    p.tasks.forEach(function(k){
+      total++;var isDone=!!S.done[k[0]];if(isDone)done++;
+      var li=document.createElement("li");li.className=(isDone?"done":"")+(!isDone&&k[2]<t?" late":"");
+      var lab=document.createElement("label");
+      var cb=document.createElement("input");cb.type="checkbox";cb.id="t-"+k[0];cb.checked=isDone;
+      cb.addEventListener("change",function(){toggle(k[0],cb.checked)});
+      var tx=document.createElement("span");tx.className="txt";tx.textContent=k[1];
+      var du=document.createElement("span");du.className="due";du.textContent=fmt(k[2]);
+      lab.append(cb,tx,du);li.appendChild(lab);ul.appendChild(li);
+    });
+    sec.append(h,n,ul);app.appendChild(sec);
+  });
+  document.getElementById("count").textContent=done+" / "+total+" done";
+  var pc=Math.round(done/total*100);
+  document.getElementById("pct").textContent=pc+"%";
+  document.getElementById("fill").style.width=pc+"%";
+}
+function toggle(id,on){
+  if(on)S.done[id]=today();else delete S.done[id];
+  render();
+  try{localStorage.setItem("ebj",JSON.stringify(S));status.textContent="Saved."}
+  catch(e){status.textContent="This browser is blocking storage, so ticks won't be kept after you close the page."}
+}
+render();
+})();
+</script>
+</body>
+</html>
